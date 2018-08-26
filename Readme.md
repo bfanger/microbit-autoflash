@@ -18,7 +18,7 @@ Download the binary from the [release page](https://github.com/bfanger/microbit-
 
 or compile from source:
 
-````sh
+```sh
 go get github.com/bfanger/microbit-autoflash
 ```
 
@@ -26,4 +26,6 @@ go get github.com/bfanger/microbit-autoflash
 
 ```sh
 microbit-autoflash
-````
+```
+
+And code with https://makecode.microbit.org/ or https://python.microbit.org/

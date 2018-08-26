@@ -29,7 +29,9 @@ func main() {
 			log.Fatalf("could not connect to micro:bit: %v", err)
 		}
 		name := path.Base(file)
-		name = name[9 : len(name)-4]
+		if name != "microbit.hex" {
+			name = name[9 : len(name)-4]
+		}
 		fmt.Printf("Flashing: %s\n", name)
 		source, err := ioutil.ReadFile(file)
 		if err != nil {
@@ -87,7 +89,9 @@ func downloadAdded() (string, error) {
 		for {
 			select {
 			case event := <-watcher.Events:
-				if event.Op == fsnotify.Create && strings.HasSuffix(event.Name, ".hex") && strings.HasPrefix(path.Base(event.Name), "microbit-") {
+				if event.Op == fsnotify.Create &&
+					strings.HasSuffix(event.Name, ".hex") &&
+					strings.HasPrefix(path.Base(event.Name), "microbit") {
 					result <- downloadAddedEvent{name: event.Name, err: nil}
 					return
 				}
